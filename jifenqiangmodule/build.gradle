@@ -22,18 +22,10 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-
     implementation 'com.liulishuo.filedownloader:library:1.7.6'
     implementation "com.squareup.okhttp3:okhttp:3.10.0"
 
