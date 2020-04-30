@@ -694,8 +694,18 @@ public class X5JavaScriptInterface {
         }
         Intent intent = new Intent(mActivity, DetailActivity.class);
         intent.putExtra("url", url + "&issdk=1&sdkver=" + WowanIndex.mStringVer);
-        Log.e("frefreg", url + "&issdk=1&sdkver=" + WowanIndex.mStringVer);
         mActivity.startActivity(intent);
+    }
+
+    /**
+     * 当前web加载某个地址
+     */
+    @JavascriptInterface
+    public void loadWebUrl(String url) {
+        if (TextUtils.isEmpty(url) || mWebView == null) {
+            return;
+        }
+        mWebView.loadUrl(url);
     }
 
     /**
