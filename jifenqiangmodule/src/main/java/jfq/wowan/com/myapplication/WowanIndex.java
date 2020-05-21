@@ -22,6 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.liulishuo.filedownloader.FileDownloader;
 
+import java.net.URLEncoder;
+
 /**
  * Created by Administrator on 2019/4/11.
  */
@@ -50,16 +52,10 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
     private String deviceid = "";//手机设备号
     private String oaid = "";//10.0oaid
 
+    private String appid = "";//同cid的多个渠道通过appid和appname统计数据
+    private String appname = "";//同cid的多个渠道通过appid和appname统计数据
 
     private String mStringKey = "";//秘钥
-
-    public String getmStringKey() {
-        return mStringKey;
-    }
-
-    public void setmStringKey(String mStringKey) {
-        this.mStringKey = mStringKey;
-    }
 
     public static final String mStringVer = "1.0";
 
@@ -76,6 +72,8 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
         deviceid = getIntent().getStringExtra("deviceid");
         mStringKey = getIntent().getStringExtra("key");
         oaid = getIntent().getStringExtra("oaid");
+        appid = getIntent().getStringExtra("appid");
+        appname = getIntent().getStringExtra("appname");
 
         if (TextUtils.isEmpty(cid) || TextUtils.isEmpty(cuid) || TextUtils.isEmpty(mStringKey)) {
             //清理activity
@@ -99,6 +97,14 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
         }
         md5Str = md5Str + "&keycode=" + keycode + "&issdk=1&sdkver=" + mStringVer + "&oaid=" + oaid + "&osversion=" + osversion + "&phonemodel=" + phonemodel;
         mStringUrl = "https://m.playmy.cn/View/Wall_AdList.aspx?" + md5Str;
+
+        if(!TextUtils.isEmpty(appid)){
+            mStringUrl = mStringUrl + "&appid=" + appid;
+        }
+        if(!TextUtils.isEmpty(appname)){
+            mStringUrl = mStringUrl + "&appname=" + URLEncoder.encode(appname);
+        }
+
         initView();
 
     }
