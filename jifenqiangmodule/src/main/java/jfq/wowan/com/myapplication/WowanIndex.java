@@ -59,6 +59,8 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
 
     public static final String mStringVer = "1.0";
 
+    public TextView mTextTitle;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,6 +115,8 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
 
         mButton = (ImageButton) findViewById(R.id.top_back);
 
+        mTextTitle = findViewById(R.id.tv_wowan_title);
+
         mWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -142,6 +146,10 @@ public class WowanIndex extends AppCompatActivity implements SwipeRefreshLayout.
                 if (null != mRefreshLayout) {
                     // 关闭加载进度条
                     mRefreshLayout.setRefreshing(false);
+                }
+                // 设置标题
+                if (null != mTextTitle) {
+                    mTextTitle.setText(view.getTitle());
                 }
             }
 
