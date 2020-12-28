@@ -400,8 +400,10 @@ public class X5JavaScriptInterface {
                         DetailActivity.mWebViewSingleInstance.post(new Runnable() {
                             @Override
                             public void run() {
-                                DetailActivity.mWebViewSingleInstance.loadUrl("javascript:downloadApkFileProcessListener("
-                                        + task.getTag() + "," + percent + ")");
+                                if (DetailActivity.mWebViewSingleInstance != null) {
+                                    DetailActivity.mWebViewSingleInstance.loadUrl("javascript:downloadApkFileProcessListener("
+                                            + task.getTag() + "," + percent + ")");
+                                }
                                 Log.e("onResume", "onResume: " + DetailActivity.mWebViewSingleInstance + "   " + percent);
                             }
                         });
